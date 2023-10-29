@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
+    "format-lint": "npm run lint --fix",
     "build": "tsc",
     "start": "npx nodemon index.ts",
     "swc": "node -r @swc-node/register index.ts",
