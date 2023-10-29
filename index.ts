@@ -1,5 +1,5 @@
 
-import express from 'express'
+import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -16,9 +16,9 @@ app.use(
 );
 
 app.use('/', (req, res) => {
-  res.send('WebWeavers - server działa!!!')
-})
+  res.send('WebWeavers - server działa!!!');
+});
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});
