@@ -1,12 +1,24 @@
-import express from 'express';
 
+import express from 'express'
+import dotenv from 'dotenv';
+import cors from 'cors';
+
+dotenv.config();
+
+const PORT = Number(process.env.PORT);
+const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
-const port = 3000;
+
+app.use(
+  cors({
+    origin: CLIENT_URL,
+  })
+);
 
 app.use('/', (req, res) => {
-  res.send('działa');
-});
+  res.send('WebWeavers - server działa!!!')
+})
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
+})
