@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 
 export const sequelize = new Sequelize({
   database: process.env.DB_NAME,
@@ -14,7 +14,7 @@ export const sequelize = new Sequelize({
       rejectUnauthorized: false,
     }
   }
-})
+});
 
 export async function connect() {
   try {
