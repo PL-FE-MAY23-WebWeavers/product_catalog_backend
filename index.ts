@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import cors from 'cors';
+import path from 'path';
 import { connect } from './src/utils/connectDB';
 
 
@@ -18,6 +19,8 @@ app.use(
     origin: CLIENT_URL,
   })
 );
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', (req, res) => {
   res.send('WebWeavers - server działa!!!');
