@@ -13,7 +13,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "unused-imports"
     ],
     "rules": {
         "indent": [
@@ -36,6 +37,21 @@
             "error",
             "always"
         ],
-        "no-trailing-spaces": "error"
+        "no-trailing-spaces": "error",
+        "allowImportingTsExtensions": "true",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "unused-imports/no-unused-vars-ts": [
+            "error",
+            {
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_"
+            }
+        ]
     }
 }
