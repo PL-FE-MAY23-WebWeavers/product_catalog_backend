@@ -1,7 +1,7 @@
 import { Column, Model, Table, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { Capacity } from './Capacity';
 import { Color } from './Color';
-import { Detail } from './Detail';
+import { PhoneDetail } from './PhoneDetail';
 
 @Table({
     tableName: 'phones',
@@ -19,7 +19,7 @@ export class Phone extends Model {
     screen!:string; // "6.1' IPS",
     ram!: string; //"4GB",
     year!: number; // 2019,
-    image!: string; // klucz obcy//"img/phones
+    image!: string; // img/phones
 
     @ForeignKey(() => Capacity)
     @Column
@@ -35,12 +35,12 @@ export class Phone extends Model {
     @BelongsTo(() => Color)
     color!: Color; // klucz obcy// "black",
 
-    @ForeignKey(() => Detail)
+    @ForeignKey(() => PhoneDetail)
     @Column
-    detailID!: number;
+    phoneDetailId!: number;
 
-    @BelongsTo(() => Detail)
-    detail!: Detail;
+    @BelongsTo(() => PhoneDetail)
+    phoneDetail!: PhoneDetail;
 }
 
 
