@@ -7,13 +7,13 @@ export const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT),
   dialect: 'postgres',
-  // models:
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false,
     }
   }
+
 });
 
 export async function connect() {

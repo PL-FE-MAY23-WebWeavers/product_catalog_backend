@@ -13,7 +13,8 @@
     "swc": "node -r @swc-node/register index.ts",
     "build:watch": "tsc -w",
     "dev": "concurrently \"npm run build:watch\" \"nodemon ./dist/index.js\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "db-migrate": "npx sequelize-cli db:migrate"
   },
   "author": "WebWeavers",
   "license": "ISC",
@@ -39,6 +40,7 @@
     "lint-staged": "^15.0.2",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
+    "sequelize-cli": "^6.6.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
