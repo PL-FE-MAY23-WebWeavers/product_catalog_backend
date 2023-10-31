@@ -1,27 +1,23 @@
-import { Capacity } from "./capacity"
-import { Cell } from "./cell"
-import { Color } from "./color"
-import { Description } from "./description"
-import { Image } from "./image"
+// nie wiem czy będzie potrzebny, ale jest.
 
 export interface PhoneDetails {
-    "id": string; //"apple-iphone-11-128gb-black",
-	"namespaceId": string; // "apple-iphone-11",
-	"name": string; //"Apple iPhone 11 128GB Black",
-	"capacityAvailable": Capacity[]; //["64GB", "128GB", "256GB"],
-	"capacity": Capacity; // "128GB",
-	"priceRegular": number; // 1100,
-	"priceDiscount": number; // 1050,
-	"colorsAvailable": Color[]; //["black", "green", "yellow", "white", "purple", "red"],
-	"color": Color; // "black",
-	"images": Image[]; /**  [
+    'id': string; //"apple-iphone-11-128gb-black",
+	'namespaceId': string; // "apple-iphone-11",
+	'name': string; //"Apple iPhone 11 128GB Black",
+	'capacityAvailable': string[]; //["64GB", "128GB", "256GB"],
+	'capacity': string; // "128GB",
+	'priceRegular': number; // 1100,
+	'priceDiscount': number; // 1050,
+	'colorsAvailable': string[]; //["black", "green", "yellow", "white", "purple", "red"],
+	'color': string; // "black",
+	'images': string[]; /**  [
 		"img/phones/apple-iphone-11/black/00.jpg",
 		"img/phones/apple-iphone-11/black/01.jpg",
 		"img/phones/apple-iphone-11/black/02.jpg",
 		"img/phones/apple-iphone-11/black/03.jpg",
 		"img/phones/apple-iphone-11/black/04.jpg"
 	], */
-	"description": Description[]; /**  [
+	'description': string[]; /**  [
 		{
 			"title": "And then there was Pro",
 			"text": [
@@ -42,11 +38,11 @@ export interface PhoneDetails {
 			]
 		}
 	], */
-	"screen": string; // "6.1' IPS",
-	"resolution": string; //  "1792x828",
-	"processor": string; // "Apple A13 Bionic",
-	"ram": string; // "4GB",
-	"camera": string; // "12 Mp + 12 Mp + 12MP",
-	"zoom": string; // "Digital, 5x",
-	"cell": Cell[]; // ["GPRS", "EDGE", "WCDMA", "UMTS", "HSPA", "LTE"]
+	'screen': string; // "6.1' IPS",
+	'resolution': string; //  "1792x828",
+	'processor': string; // "Apple A13 Bionic",
+	'ram': string; // "4GB",
+	'camera': string; // "12 Mp + 12 Mp + 12MP",
+	'zoom': string; // "Digital, 5x",
+	'cell': string[]; // ["GPRS", "EDGE", "WCDMA", "UMTS", "HSPA", "LTE"]
 }
