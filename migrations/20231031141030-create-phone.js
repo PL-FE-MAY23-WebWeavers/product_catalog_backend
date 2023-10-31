@@ -22,10 +22,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       fullPrice: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       screen: {
         type: Sequelize.STRING
@@ -45,17 +45,17 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      // createdAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // }
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Phones');
+    await queryInterface.dropTable('phones');
   }
 };
