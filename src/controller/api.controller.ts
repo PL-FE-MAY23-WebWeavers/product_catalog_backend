@@ -8,8 +8,8 @@ const getAllPhones = async (req: Request, res: Response) => {
 };
 
 const getPhone = async (req: Request, res: Response) => {
-    const { phoneId } = req.params;
-    const phone = await apiServices.getPhone(phoneId);
+    const { id } = req.params;
+    const phone = await apiServices.getPhone(id);
 
     if (!phone) {
         res.sendStatus(404);

@@ -3,5 +3,5 @@ import { apiController } from '../controller/api.controller';
 
 export const apiRoutes = express.Router();
 
-apiRoutes.get('/phones', apiController.getAllPhones);
-apiRoutes.get('/phones/:phoneId', apiController.getPhone);
+apiRoutes.get('/products', apiController.getAllPhones);
+apiRoutes.get('/products/:id', apiController.getPhone);

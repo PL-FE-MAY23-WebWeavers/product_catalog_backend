@@ -1,3 +1,4 @@
+import { PhoneDetail } from '../models';
 import { Phone } from '../models/Phone';
 
 
@@ -6,10 +7,10 @@ const getAllPhones = async () =>  {
     return phones;
 };
 
-const getPhone = async (phoneId: string) => {
-    const phone = await Phone.findOne({
+const getPhone = async (id: string) => {
+    const phone = await PhoneDetail.findOne({
         where: {
-            phoneId
+            id
         }
     });
     return phone;
