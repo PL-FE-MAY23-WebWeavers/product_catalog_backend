@@ -1,2 +1,2 @@
-export * from './Phone'
-export * from './PhoneDetail'
+export * from './Phone';
+export * from './PhoneDetail';

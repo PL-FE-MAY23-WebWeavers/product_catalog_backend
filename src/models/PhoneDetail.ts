@@ -1,66 +1,66 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'phone_details',
-  modelName:  'PhoneDetail',
-  timestamps: false
+    tableName: 'phone_details',
+    modelName:  'PhoneDetail',
+    timestamps: false
 })
 
 export class PhoneDetail extends Model {
   @Column({
-    type: DataType.STRING,
-    primaryKey: true
-})
-id!: string;
+      type: DataType.STRING,
+      primaryKey: true
+  })
+      id!: string;
 
 @Column
-namespaceId!: string;
+    namespaceId!: string;
 
 @Column
-name!: string;
+    name!: string;
 
 @Column(DataType.ARRAY(DataType.STRING))
-capacityAvailable!: string[];
+    capacityAvailable!: string[];
 
 @Column
-capacity!: string;
+    capacity!: string;
 
 @Column
-priceRegular!: number;
+    priceRegular!: number;
 
 @Column
-priceDiscount!: number;
+    priceDiscount!: number;
 
 @Column(DataType.ARRAY(DataType.STRING))
-colorsAvailable!: string[];
+    colorsAvailable!: string[];
 
 @Column
-color!: string;
+    color!: string;
 
 @Column(DataType.ARRAY(DataType.STRING))
-images!: string[];
+    images!: string[];
 
 @Column(DataType.JSON)
-description!: { title: string, text: string[] }[];
+    description!: { title: string, text: string[] }[];
 
 @Column
-screen!: string;
+    screen!: string;
 
 @Column
-resolution!: string;
+    resolution!: string;
 
 @Column
-processor!: string;
+    processor!: string;
 
 @Column
-ram!: string;
+    ram!: string;
 
 @Column
-camera!: string;
+    camera!: string;
 
 @Column
-zoom!: string;
+    zoom!: string;
 
 @Column(DataType.ARRAY(DataType.STRING))
-cell!: string[];
+    cell!: string[];
 }

@@ -14,9 +14,9 @@ const app = express();
 connect();
 
 app.use(
-  cors({
-    origin: CLIENT_URL,
-  })
+    cors({
+        origin: CLIENT_URL,
+    })
 );
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRoutes);
 app.use('/', (req, res) => {
-  res.send('WebWeavers - server działa!!!');
+    res.send('WebWeavers - server działa!!!');
 });
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

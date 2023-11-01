@@ -1,50 +1,50 @@
 import { Column, Model, Table } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'phones',
-  modelName: 'Phone',
-  timestamps: false
+    tableName: 'phones',
+    modelName: 'Phone',
+    timestamps: false
 })
 
 export class Phone extends Model {
   @Column({
-    primaryKey: true
+      primaryKey: true
   })
-    id!: string;
+      id!: string;
 
     @Column
-    category!: string; // "phones"
+        category!: string; // "phones"
     
     @Column
-    phoneId!: string; // "apple-iphone-11-128gb-black"
+        phoneId!: string; // "apple-iphone-11-128gb-black"
 
     @Column
-    itemId!: string; // "apple-iphone-11-128gb-black"
+        itemId!: string; // "apple-iphone-11-128gb-black"
     
     @Column
-    name!: string; // "Apple iPhone 11 128GB Black"
+        name!: string; // "Apple iPhone 11 128GB Black"
     
     @Column
-    fullPrice!: number; // 1100
+        fullPrice!: number; // 1100
     
     @Column
-    price!: number; // 1050
+        price!: number; // 1050
     
     @Column
-    screen!: string; // "6.1' IPS"
+        screen!: string; // "6.1' IPS"
     
     @Column
-    capacity!: string; // "128GB"
+        capacity!: string; // "128GB"
     
     @Column
-    color!: string; // "black"
+        color!: string; // "black"
     
     @Column
-    ram!: string; //"4GB"
+        ram!: string; //"4GB"
     
     @Column
-    year!: number; // 2019
+        year!: number; // 2019
     
     @Column
-    image!: string; // img/phones
+        image!: string; // img/phones
 }
