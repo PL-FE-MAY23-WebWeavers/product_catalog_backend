@@ -14,7 +14,8 @@
     "build:watch": "tsc -w",
     "dev": "concurrently \"npm run build:watch\" \"nodemon ./dist/index.js\"",
     "prepare": "husky install",
-    "db-migrate": "npx sequelize-cli db:migrate"
+    "db-migrate": "npx sequelize-cli db:migrate",
+    "db-seed": "npx sequelize-cli db:seed:all"
   },
   "author": "WebWeavers",
   "license": "ISC",

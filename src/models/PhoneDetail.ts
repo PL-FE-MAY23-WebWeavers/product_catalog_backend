@@ -8,5 +8,5 @@ import { Column, Model, Table } from 'sequelize-typescript';
 export class PhoneDetail extends Model {
   @Column
     filename!: string;
-    file!: JSON;
+  file!: JSON;
 }

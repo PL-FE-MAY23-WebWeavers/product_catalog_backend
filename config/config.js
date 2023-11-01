@@ -1,7 +1,9 @@
-require('dotenv').config()
+require('dotenv').config();
+
+// import 'dotenv/config';
 
 module.exports ={
-  "development": {
+  'development': {
     database: process.env.DB_NAME,
     username: process.env.DB_USER_NAME,
     host: process.env.DB_HOST,
@@ -15,4 +17,4 @@ module.exports ={
       }
     }
   }
-}
+};

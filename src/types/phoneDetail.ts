@@ -17,7 +17,7 @@ export interface PhoneDetails {
 		"img/phones/apple-iphone-11/black/03.jpg",
 		"img/phones/apple-iphone-11/black/04.jpg"
 	], */
-	'description': string[]; /**  [
+	'description': Description[]; /**  [
 		{
 			"title": "And then there was Pro",
 			"text": [
@@ -45,4 +45,9 @@ export interface PhoneDetails {
 	'camera': string; // "12 Mp + 12 Mp + 12MP",
 	'zoom': string; // "Digital, 5x",
 	'cell': string[]; // ["GPRS", "EDGE", "WCDMA", "UMTS", "HSPA", "LTE"]
+}
+
+type Description = {
+	title: string;
+    text: string[];
 }
