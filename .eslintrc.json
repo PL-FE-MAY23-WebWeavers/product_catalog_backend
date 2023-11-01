@@ -1,6 +1,6 @@
 {
     "env": {
-        "es2021": true,
+        "commonjs": true,
         "node": true
     },
     "extends": [
@@ -32,7 +32,10 @@
             "error",
             "always"
         ],
-        "eol-last": ["error", "always"],
+        "eol-last": [
+            "error",
+            "always"
+        ],
         "no-trailing-spaces": "error"
     }
 }
