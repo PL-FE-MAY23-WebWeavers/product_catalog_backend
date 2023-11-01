@@ -1,6 +1,22 @@
-import apiServices from '../service/api.services';
-import { Sequelize } from 'sequelize';
+import { apiServices } from '../service/api.services';
 
-const getAllPhones = (req: any, res: any) => {
-    const phones = 
+const getAllPhones = async (req: any, res: any) => {
+    const phones = await apiServices.getAllPhones()
+    res.send(phones)
+}
+
+const getPhone = async (req: any, res: any) => {
+    const { phoneId } = req.params
+    const phone = await apiServices.getPhone(phoneId)
+
+    if (!phone) {
+        res.sendStatus(404)
+        return
+    }
+    res.send(phone)
+}
+
+export const apiController = {
+    getAllPhones,
+    getPhone,
 }

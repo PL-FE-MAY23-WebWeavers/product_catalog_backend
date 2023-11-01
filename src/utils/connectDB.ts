@@ -1,5 +1,5 @@
-import { Sequelize } from 'sequelize';
-
+import { Sequelize } from 'sequelize-typescript';
+import * as models from '../models'
 export const sequelize = new Sequelize({
   database: process.env.DB_NAME,
   username: process.env.DB_USER_NAME,
@@ -15,6 +15,8 @@ export const sequelize = new Sequelize({
   }
 
 });
+
+sequelize.addModels(Object.values(models))
 
 export async function connect() {
   try {
