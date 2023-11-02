@@ -2,6 +2,12 @@
 import { OrderBy, SortOrder, apiServices } from '../service/api.services';
 import { Request, Response } from 'express';
 
+const getNum = async (req: Request, res: Response) => {
+    const num = await apiServices.getNum();
+    console.log('getNum');
+    res.send(num.toString());
+};
+
 const getAllPhones = async (req: Request, res: Response) => {
     const { page, perPage, orderBy, order } = req.query;
 
@@ -10,7 +16,6 @@ const getAllPhones = async (req: Request, res: Response) => {
         return;
     }
 
-    console.log(page, perPage);
     const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder);
     res.send(phones);
 };
@@ -29,4 +34,5 @@ const getPhone = async (req: Request, res: Response) => {
 export const apiController = {
     getAllPhones,
     getPhone,
+    getNum
 };

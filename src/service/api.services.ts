@@ -5,6 +5,10 @@ import { Phone } from '../models/Phone';
 export type OrderBy = 'newest' | 'ram' | 'category' | 'name' | 'price' | 'screen' | 'capacity' | 'color' | 'year';
 export type SortOrder = 'ASC' | 'DESC';
 
+const getNum = async () => {
+    const num = await Phone.count();
+    return num;
+};
 
 const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder) => {
     const offset = (page - 1) * perPage;
@@ -49,5 +53,6 @@ const getPhone = async (id: string) => {
 
 export const apiServices = {
     getAllPhones,
-    getPhone
+    getPhone,
+    getNum
 };
