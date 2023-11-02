@@ -3,8 +3,8 @@ import 'dotenv/config';
 import cors from 'cors';
 import path from 'path';
 import { connect } from './src/utils/connectDB';
+import productsController from './src/controllers/productsController';
 import { apiRoutes } from './src/routes/api.routers';
-
 
 const PORT = Number(process.env.PORT);
 const CLIENT_URL = process.env.CLIENT_URL;
@@ -26,6 +26,9 @@ app.use('/api', apiRoutes);
 app.use('/', (req, res) => {
     res.send('WebWeavers - server działa!!!');
 });
+
+app.use('/api', productsController);
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
