@@ -1,9 +1,17 @@
-import { apiServices } from '../service/api.services';
+
+import { OrderBy, SortOrder, apiServices } from '../service/api.services';
 import { Request, Response } from 'express';
 
-
 const getAllPhones = async (req: Request, res: Response) => {
-    const phones = await apiServices.getAllPhones();
+    const { page, perPage, orderBy, order } = req.query;
+
+    if (page && perPage && (isNaN(Number(page)) || isNaN(Number(perPage)))) {
+        res.sendStatus(400);
+        return;
+    }
+
+    console.log(page, perPage);
+    const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder);
     res.send(phones);
 };
 
