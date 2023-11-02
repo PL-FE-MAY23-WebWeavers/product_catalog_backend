@@ -3,7 +3,7 @@ import 'dotenv/config';
 import cors from 'cors';
 import path from 'path';
 import { connect } from './src/utils/connectDB';
-import productsController from './src/controllers/productsController';
+import productsController from './src/controller/productsController';
 import { apiRoutes } from './src/routes/api.routers';
 
 const PORT = Number(process.env.PORT);
