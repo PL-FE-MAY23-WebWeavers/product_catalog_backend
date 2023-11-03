@@ -5,10 +5,10 @@ import { Phone } from '../models/Phone';
 export type OrderBy = 'newest' | 'ram' | 'category' | 'name' | 'price' | 'screen' | 'capacity' | 'color' | 'year';
 export type SortOrder = 'ASC' | 'DESC';
 
-const getNum = async () => {
-    const num = await Phone.count();
-    return num;
-};
+// const getNum = async () => {
+//     const num = await Phone.count();
+//     return num;
+// };
 
 const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder) => {
     const offset = (page - 1) * perPage;
@@ -27,20 +27,19 @@ const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, so
         ];
     }
     console.log(page, perPage, order);
-    const phones = await Phone.findAll({
+    const {count, rows} = await Phone.findAndCountAll({
         offset: offset || 0,
         limit: perPage || 8,
         order
     });
 
-    return phones;
+    return {count, rows};
 };
 
 function isOrderBy(value: string): value is OrderBy {
     const validOrderBys: OrderBy[] = ['newest', 'ram', 'category', 'name', 'price', 'screen', 'capacity', 'color', 'year'];
     return validOrderBys.includes(value as OrderBy);
 }
-
 
 const getPhone = async (id: string) => {
     const phone = await PhoneDetail.findOne({
@@ -54,5 +53,5 @@ const getPhone = async (id: string) => {
 export const apiServices = {
     getAllPhones,
     getPhone,
-    getNum
+    // getNum
 };
