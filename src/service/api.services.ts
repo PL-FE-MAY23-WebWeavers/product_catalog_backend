@@ -35,8 +35,26 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
+const getNewPhones = async () => {
+    const phones = await getAllPhones();
+    if (phones.length === 0) {
+        return;
+    }
+
+    const phonesNew = await Phone.findAndCountAll({
+        order: [
+            ['year', 'DESC']
+        ],
+        limit: 7,
+
+    });
+
+    return phonesNew;
+};
+
 export const apiServices = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
+    getNewPhones,
 };

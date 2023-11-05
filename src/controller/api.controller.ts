@@ -30,8 +30,20 @@ const getPhonesRecommended = async (req: Request, res: Response) => {
     res.send(phonesRecommended);
 };
 
+const getNewPhones = async (req: Request, res: Response) => {
+    const phones = await apiServices.getNewPhones();
+
+    if (!phones) {
+        res.sendStatus(404);
+        return;
+    }
+
+    res.send(phones);
+};
+
 export const apiController = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
+    getNewPhones,
 };
