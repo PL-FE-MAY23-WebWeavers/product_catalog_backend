@@ -13,14 +13,14 @@ export type SortOrder = 'ASC' | 'DESC';
 const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder) => {
     const offset = (page - 1) * perPage;
     let order: [[OrderBy, SortOrder]] | [['id', 'ASC']];
-    
+
     if (orderBy && isOrderBy(orderBy)) {
         if (sort !== 'DESC') {
             order = [[orderBy, 'ASC']];
         } else {
             order = [[orderBy, 'DESC']];
         }
-        
+
     } else {
         order = [
             ['id', 'ASC']
@@ -69,9 +69,24 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
+
+const getNewPhones = async () => {
+    const phonesNew = await Phone.findAndCountAll({
+        order: [
+            ['year', 'DESC']
+        ],
+        limit: 7,
+    });
+
+    return phonesNew;
+};
+
 export const apiServices = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
+
+    getNewPhones,
+
     // getNum
 };
