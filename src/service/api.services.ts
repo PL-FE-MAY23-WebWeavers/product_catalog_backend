@@ -70,17 +70,11 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-    const phones = await Phone.findAll();
-    if (phones.length === 0) {
-        return;
-    }
-
     const phonesNew = await Phone.findAndCountAll({
         order: [
             ['year', 'DESC']
         ],
         limit: 7,
-
     });
 
     return phonesNew;
