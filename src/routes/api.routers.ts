@@ -6,4 +6,5 @@ export const apiRoutes = express.Router();
 apiRoutes.get('/products', apiController.getAllPhones);
 // apiRoutes.get('/products/count', apiController.getNum);
 apiRoutes.get('/products/:id', apiController.getPhone);
+apiRoutes.get('/products/:id/recommended', apiController.getPhonesRecommended);
 

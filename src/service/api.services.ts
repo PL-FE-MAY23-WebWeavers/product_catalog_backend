@@ -1,6 +1,6 @@
 import { PhoneDetail } from '../models';
 import { Phone } from '../models/Phone';
-
+import { Op } from 'sequelize';
 
 export type OrderBy = 'newest' | 'ram' | 'category' | 'name' | 'price' | 'screen' | 'capacity' | 'color' | 'year';
 export type SortOrder = 'ASC' | 'DESC';
@@ -50,8 +50,28 @@ const getPhone = async (id: string) => {
     return phone;
 };
 
+const getPhonesRecommended = async (id: string) => {
+    const phone = await getPhone(id);
+    if (!phone) {
+        return;
+    }
+
+    const { color } = phone;
+
+    const phonesRecommended = await PhoneDetail.findAndCountAll({
+        where: {
+            color: {
+                [Op.like]: color,
+            },
+        }
+    });
+
+    return phonesRecommended;
+};
+
 export const apiServices = {
     getAllPhones,
     getPhone,
+    getPhonesRecommended,
     // getNum
 };
