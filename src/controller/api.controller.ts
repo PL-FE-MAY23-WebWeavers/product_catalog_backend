@@ -1,5 +1,5 @@
 
-import { OrderBy, SortOrder, apiServices } from '../service/api.services';
+import { OrderBy, ProductType, SortOrder, apiServices } from '../service/api.services';
 import { Request, Response } from 'express';
 
 // const getNum = async (req: Request, res: Response) => {
@@ -44,7 +44,13 @@ const getPhonesRecommended = async (req: Request, res: Response) => {
 };
 
 const getNewPhones = async (req: Request, res: Response) => {
-    const phones = await apiServices.getNewPhones();
+    const { productType } = req.query;
+
+    if (productType !== 'phones' && productType) {
+        res.sendStatus(400);
+        return;
+    }
+    const phones = await apiServices.getNewPhones(productType as ProductType);
 
     if (!phones) {
         res.sendStatus(404);

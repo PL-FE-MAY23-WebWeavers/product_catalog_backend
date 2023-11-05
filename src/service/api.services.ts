@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 
 export type OrderBy = 'newest' | 'ram' | 'category' | 'name' | 'price' | 'screen' | 'capacity' | 'color' | 'year';
 export type SortOrder = 'ASC' | 'DESC';
+export type ProductType = 'phones';
 
 // const getNum = async () => {
 //     const num = await Phone.count();
@@ -69,7 +70,11 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
-const getNewPhones = async () => {
+const getNewPhones = async (productType?: ProductType) => {
+    if (productType !== 'phones' && productType) {
+        return [];
+    }
+
     const phonesNew = await Phone.findAndCountAll({
         order: [
             ['year', 'DESC']
