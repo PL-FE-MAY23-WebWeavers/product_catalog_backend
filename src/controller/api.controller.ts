@@ -64,4 +64,5 @@ export const apiController = {
     getPhone,
     getPhonesRecommended,
     getNewPhones,
+    // getNum
 };
