@@ -11,9 +11,13 @@ export type ProductType = 'phones';
 //     return num;
 // };
 
-const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder) => {
+const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder, productType?: ProductType) => {
     const offset = (page - 1) * perPage;
     let order: [[OrderBy, SortOrder]] | [['id', 'ASC']];
+
+    if (productType !== 'phones' && productType) {
+        return [];
+    }
 
     if (orderBy && isOrderBy(orderBy)) {
         if (sort !== 'DESC') {
@@ -70,11 +74,7 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
-const getNewPhones = async (productType?: ProductType) => {
-    if (productType !== 'phones' && productType) {
-        return [];
-    }
-
+const getNewPhones = async () => {
     const phonesNew = await Phone.findAndCountAll({
         order: [
             ['year', 'DESC']

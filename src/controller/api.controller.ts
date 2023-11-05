@@ -9,14 +9,19 @@ import { Request, Response } from 'express';
 // };
 
 const getAllPhones = async (req: Request, res: Response) => {
-    const { page, perPage, orderBy, order } = req.query;
+    const { page, perPage, orderBy, order, productType } = req.query;
 
     if (page && perPage && (isNaN(Number(page)) || isNaN(Number(perPage)))) {
         res.sendStatus(400);
         return;
     }
 
-    const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder);
+    if (productType !== 'phones' && productType) {
+        res.sendStatus(400);
+        return;
+    }
+
+    const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder, productType as ProductType);
     res.send(phones);
 };
 
@@ -44,13 +49,7 @@ const getPhonesRecommended = async (req: Request, res: Response) => {
 };
 
 const getNewPhones = async (req: Request, res: Response) => {
-    const { productType } = req.query;
-
-    if (productType !== 'phones' && productType) {
-        res.sendStatus(400);
-        return;
-    }
-    const phones = await apiServices.getNewPhones(productType as ProductType);
+    const phones = await apiServices.getNewPhones();
 
     if (!phones) {
         res.sendStatus(404);
