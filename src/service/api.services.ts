@@ -69,6 +69,7 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
+
 const getNewPhones = async () => {
     const phonesNew = await Phone.findAndCountAll({
         order: [
@@ -84,6 +85,8 @@ export const apiServices = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
+
     getNewPhones,
+
     // getNum
 };

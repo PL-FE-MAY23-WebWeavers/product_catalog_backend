@@ -43,6 +43,7 @@ const getPhonesRecommended = async (req: Request, res: Response) => {
     res.send(phonesRecommended);
 };
 
+
 const getNewPhones = async (req: Request, res: Response) => {
     const phones = await apiServices.getNewPhones();
 
@@ -59,4 +60,8 @@ export const apiController = {
     getPhone,
     getPhonesRecommended,
     getNewPhones,
+
+
+    // getNum
+
 };
