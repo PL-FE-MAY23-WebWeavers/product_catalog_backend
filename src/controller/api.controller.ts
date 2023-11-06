@@ -1,5 +1,5 @@
 
-import { OrderBy, SortOrder, apiServices } from '../service/api.services';
+import { OrderBy, ProductType, SortOrder, apiServices } from '../service/api.services';
 import { Request, Response } from 'express';
 
 // const getNum = async (req: Request, res: Response) => {
@@ -9,14 +9,19 @@ import { Request, Response } from 'express';
 // };
 
 const getAllPhones = async (req: Request, res: Response) => {
-    const { page, perPage, orderBy, order } = req.query;
+    const { page, perPage, orderBy, order, productType } = req.query;
 
     if (page && perPage && (isNaN(Number(page)) || isNaN(Number(perPage)))) {
         res.sendStatus(400);
         return;
     }
 
-    const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder);
+    if (productType !== 'phones' && productType) {
+        res.sendStatus(400);
+        return;
+    }
+
+    const phones = await apiServices.getAllPhones(Number(page), Number(perPage), orderBy as OrderBy, order as SortOrder, productType as ProductType);
     res.send(phones);
 };
 
@@ -43,7 +48,6 @@ const getPhonesRecommended = async (req: Request, res: Response) => {
     res.send(phonesRecommended);
 };
 
-
 const getNewPhones = async (req: Request, res: Response) => {
     const phones = await apiServices.getNewPhones();
 
@@ -60,8 +64,5 @@ export const apiController = {
     getPhone,
     getPhonesRecommended,
     getNewPhones,
-
-
     // getNum
-
 };

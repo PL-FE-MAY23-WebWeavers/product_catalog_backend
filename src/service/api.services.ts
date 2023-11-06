@@ -4,15 +4,20 @@ import { Op } from 'sequelize';
 
 export type OrderBy = 'newest' | 'ram' | 'category' | 'name' | 'price' | 'screen' | 'capacity' | 'color' | 'year';
 export type SortOrder = 'ASC' | 'DESC';
+export type ProductType = 'phones';
 
 // const getNum = async () => {
 //     const num = await Phone.count();
 //     return num;
 // };
 
-const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder) => {
+const getAllPhones = async (page: number, perPage: number, orderBy?: OrderBy, sort?: SortOrder, productType?: ProductType) => {
     const offset = (page - 1) * perPage;
     let order: [[OrderBy, SortOrder]] | [['id', 'ASC']];
+
+    if (productType !== 'phones' && productType) {
+        return [];
+    }
 
     if (orderBy && isOrderBy(orderBy)) {
         if (sort !== 'DESC') {
@@ -69,7 +74,6 @@ const getPhonesRecommended = async (id: string) => {
     return phonesRecommended;
 };
 
-
 const getNewPhones = async () => {
     const phonesNew = await Phone.findAndCountAll({
         order: [
@@ -85,8 +89,6 @@ export const apiServices = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
-
     getNewPhones,
-
     // getNum
 };
