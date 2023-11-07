@@ -97,7 +97,7 @@ const getDiscount = async () => {
     }
 
     return discount;
-}
+};
 
 export const apiServices = {
     getAllPhones,

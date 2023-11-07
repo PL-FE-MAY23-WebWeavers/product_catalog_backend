@@ -68,7 +68,7 @@ const getDiscount = async (req: Request, res: Response) => {
     }
 
     res.send(discounts);
-}
+};
 
 export const apiController = {
     getAllPhones,
