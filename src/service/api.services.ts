@@ -81,14 +81,29 @@ const getNewPhones = async () => {
         ],
         limit: 7,
     });
-
     return phonesNew;
 };
+
+const getDiscount = async () => {
+    const discount = await PhoneDetail.findAll({
+        attributes: ['priceDiscount'],
+        order: [
+            ['priceDiscount', 'ASC']
+        ]
+    });
+
+    if (!discount) {
+        return [];
+    }
+
+    return discount;
+}
 
 export const apiServices = {
     getAllPhones,
     getPhone,
     getPhonesRecommended,
     getNewPhones,
+    getDiscount,
     // getNum
 };
