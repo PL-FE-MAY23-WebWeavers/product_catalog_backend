@@ -25,10 +25,19 @@ const getAllPhones = async (
   perPage: number,
   orderBy?: OrderBy,
   sort?: SortOrder,
-  productType?: ProductType
+  productType?: ProductType,
+  searchText?: string
 ) => {
   const offset = (page - 1) * perPage;
   let order: [[OrderBy, SortOrder]] | [['id', 'ASC']];
+
+  const searchKeywords = searchText?.split(' ');
+
+  const searchConditions = searchKeywords?.map((keyword) => ({
+    name: {
+      [Op.iLike]: `%${keyword}%`,
+    },
+  }));
 
   if (productType !== 'phones' && productType) {
     return [];
@@ -43,7 +52,20 @@ const getAllPhones = async (
   } else {
     order = [['id', 'ASC']];
   }
-  console.log(page, perPage, order);
+
+  if (searchConditions && searchConditions?.length > 0) {
+    const { count, rows } = await Phone.findAndCountAll({
+      where: {
+        [Op.and]: searchConditions,
+      },
+      offset: offset || 0,
+      limit: perPage || 8,
+      order,
+    });
+
+    return { count, rows };
+  }
+
   const { count, rows } = await Phone.findAndCountAll({
     offset: offset || 0,
     limit: perPage || 8,
@@ -55,7 +77,6 @@ const getAllPhones = async (
 
 function isOrderBy(value: string): value is OrderBy {
   const validOrderBys: OrderBy[] = [
-    'newest',
     'ram',
     'category',
     'name',

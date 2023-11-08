@@ -6,7 +6,7 @@ import { connect } from './src/utils/connectDB';
 import { apiRoutes } from './src/routes/api.routers';
 
 const PORT = Number(process.env.PORT);
-const CLIENT_URL = process.env.CLIENT_URL;
+// const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
 
 connect();
@@ -22,6 +22,7 @@ const corsOptions: CorsOptions = {
       // Restrict origins in production
       const whitelist = [
         'https://pl-fe-may23-webweavers.github.io/product_catalog/',
+        'https://localhost:5001',
       ];
       if (whitelist.indexOf(origin as string) !== -1) {
         callback(null, true);
