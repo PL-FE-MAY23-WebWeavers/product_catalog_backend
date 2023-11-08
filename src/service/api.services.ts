@@ -118,18 +118,35 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-  const phonesNew = await Phone.findAndCountAll({
-    order: [['year', 'DESC']],
-    limit: 7,
-  });
+    const phonesNew = await Phone.findAndCountAll({
+        order: [
+            ['year', 'DESC']
+        ],
+        limit: 7,
+    });
+    return phonesNew;
+};
 
-  return phonesNew;
+const getDiscount = async () => {
+    const discount = await PhoneDetail.findAll({
+        attributes: ['priceDiscount'],
+        order: [
+            ['priceDiscount', 'ASC']
+        ]
+    });
+
+    if (!discount) {
+        return [];
+    }
+
+    return discount;
 };
 
 export const apiServices = {
-  getAllPhones,
-  getPhone,
-  getPhonesRecommended,
-  getNewPhones,
-  // getNum
+    getAllPhones,
+    getPhone,
+    getPhonesRecommended,
+    getNewPhones,
+    getDiscount,
+    // getNum
 };

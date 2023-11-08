@@ -70,10 +70,22 @@ const getNewPhones = async (req: Request, res: Response) => {
   res.send(phones);
 };
 
+const getDiscount = async (req: Request, res: Response) => {
+  const discounts = await apiServices.getDiscount();
+
+  if (!discounts) {
+    res.sendStatus(404);
+    return;
+  }
+
+  res.send(discounts);
+};
+
 export const apiController = {
   getAllPhones,
   getPhone,
   getPhonesRecommended,
   getNewPhones,
+  getDiscount,
   // getNum
 };
