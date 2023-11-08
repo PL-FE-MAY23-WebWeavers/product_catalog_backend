@@ -35,7 +35,7 @@ const getAllPhones = async (
 
   const searchConditions = searchKeywords?.map((keyword) => ({
     name: {
-      [Op.like]: `%${keyword}%`,
+      [Op.iLike]: `%${keyword}%`,
     },
   }));
 
@@ -53,10 +53,20 @@ const getAllPhones = async (
     order = [['id', 'ASC']];
   }
 
+  if (searchConditions && searchConditions?.length > 0) {
+    const { count, rows } = await Phone.findAndCountAll({
+      where: {
+        [Op.and]: searchConditions,
+      },
+      offset: offset || 0,
+      limit: perPage || 8,
+      order,
+    });
+
+    return { count, rows };
+  }
+
   const { count, rows } = await Phone.findAndCountAll({
-    where: {
-      [Op.and]: searchConditions,
-    },
     offset: offset || 0,
     limit: perPage || 8,
     order,
