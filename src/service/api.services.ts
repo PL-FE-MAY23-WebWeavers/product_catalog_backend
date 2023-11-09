@@ -107,7 +107,7 @@ const getPhonesRecommended = async (id: string) => {
 
   const { color } = phone;
 
-  const phonesRecommended = await PhoneDetail.findAndCountAll({
+  const phonesRecommended = await Phone.findAll({
     where: {
       color: {
         [Op.like]: color,
@@ -119,11 +119,8 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-
   const phonesNew = await Phone.findAll({
-    order: [
-      ['year', 'DESC']
-    ],
+    order: [['year', 'DESC']],
     limit: 7,
   });
   return phonesNew;
@@ -144,11 +141,9 @@ const getDiscount = async () => {
       'ram',
       'year',
       'image',
-      [Sequelize.literal('"fullPrice" - "price"'), 'result']
+      [Sequelize.literal('"fullPrice" - "price"'), 'result'],
     ],
-    order: [
-      [Sequelize.literal('"result"'), 'DESC']
-    ],
+    order: [[Sequelize.literal('"result"'), 'DESC']],
     limit: 10,
   });
 
