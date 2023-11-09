@@ -1,6 +1,7 @@
 import { PhoneDetail } from '../models';
 import { Phone } from '../models/Phone';
 import { Op } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 export type OrderBy =
   | 'newest'
@@ -118,7 +119,7 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-  const phonesNew = await Phone.findAndCountAll({
+  const phonesNew = await Phone.findAll({
     order: [['year', 'DESC']],
     limit: 7,
   });
@@ -126,9 +127,24 @@ const getNewPhones = async () => {
 };
 
 const getDiscount = async () => {
-  const discount = await PhoneDetail.findAll({
-    attributes: ['priceDiscount'],
-    order: [['priceDiscount', 'ASC']],
+  const discount = await Phone.findAll({
+    attributes: [
+      'price',
+      'fullPrice',
+      'category',
+      'phoneId',
+      'itemId',
+      'name',
+      'screen',
+      'capacity',
+      'color',
+      'ram',
+      'year',
+      'image',
+      [Sequelize.literal('"fullPrice" - "price"'), 'result'],
+    ],
+    order: [[Sequelize.literal('"result"'), 'DESC']],
+    limit: 10,
   });
 
   if (!discount) {
