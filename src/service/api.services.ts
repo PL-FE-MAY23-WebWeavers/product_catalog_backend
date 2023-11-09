@@ -119,7 +119,7 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-  const phonesNew = await Phone.findAndCountAll({
+  const phonesNew = await Phone.findAll({
     order: [
       ['year', 'DESC']
     ],
