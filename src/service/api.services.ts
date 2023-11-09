@@ -106,7 +106,7 @@ const getPhonesRecommended = async (id: string) => {
 
   const { color } = phone;
 
-  const phonesRecommended = await PhoneDetail.findAndCountAll({
+  const phonesRecommended = await Phone.findAll({
     where: {
       color: {
         [Op.like]: color,
@@ -118,35 +118,31 @@ const getPhonesRecommended = async (id: string) => {
 };
 
 const getNewPhones = async () => {
-    const phonesNew = await Phone.findAndCountAll({
-        order: [
-            ['year', 'DESC']
-        ],
-        limit: 7,
-    });
-    return phonesNew;
+  const phonesNew = await Phone.findAndCountAll({
+    order: [['year', 'DESC']],
+    limit: 7,
+  });
+  return phonesNew;
 };
 
 const getDiscount = async () => {
-    const discount = await PhoneDetail.findAll({
-        attributes: ['priceDiscount'],
-        order: [
-            ['priceDiscount', 'ASC']
-        ]
-    });
+  const discount = await PhoneDetail.findAll({
+    attributes: ['priceDiscount'],
+    order: [['priceDiscount', 'ASC']],
+  });
 
-    if (!discount) {
-        return [];
-    }
+  if (!discount) {
+    return [];
+  }
 
-    return discount;
+  return discount;
 };
 
 export const apiServices = {
-    getAllPhones,
-    getPhone,
-    getPhonesRecommended,
-    getNewPhones,
-    getDiscount,
-    // getNum
+  getAllPhones,
+  getPhone,
+  getPhonesRecommended,
+  getNewPhones,
+  getDiscount,
+  // getNum
 };
