@@ -4,6 +4,11 @@ import cors, { CorsOptions } from 'cors';
 import path from 'path';
 import { connect } from './src/utils/connectDB';
 import { apiRoutes } from './src/routes/api.routers';
+// import { authApp } from './src/auth/authApp';
+
+// authApp.listen(PORT, () => {
+//   console.log(`Listening on port ${PORT}`);
+// });
 
 const PORT = Number(process.env.PORT);
 // const CLIENT_URL = process.env.CLIENT_URL;
@@ -33,16 +38,7 @@ const corsOptions: CorsOptions = {
   },
 };
 
-// Enable CORS with the above options
 app.use(cors(corsOptions));
-
-// ...rest of your app setup
-
-// app.use(
-//   cors({
-//     origin: CLIENT_URL,
-//   })
-// );
 
 app.use(express.static(path.join(__dirname, 'public')));
 
