@@ -12,6 +12,8 @@ export const stripeApp = express();
 
 const bodyParser = require('body-parser');
 
+const frontUrl = process.env.CLIENT_URL;
+
 const fulfillOrder = (lineItems: any) => {
   console.log('Fulfilling order', lineItems);
 };
@@ -20,15 +22,14 @@ stripeApp.use(express.urlencoded({ extended: true }));
 stripeApp.post(
   '/create-checkout-session',
   async (req: Request, res: Response) => {
-    console.log(req.body.cart);
     const order = req.body.cart.split('-');
     order.pop();
-    console.log(order);
+
     const order_items = order.map((line: string) => {
       const lineSplit = line.split(':');
       return [lineSplit[0], lineSplit[1], lineSplit[2]];
     });
-    console.log(order_items);
+
     const line_items: {
       price_data: {
         currency: string;
@@ -52,8 +53,8 @@ stripeApp.post(
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: 'http://localhost:4242/success',
-      cancel_url: 'http://localhost:4242/cancel',
+      success_url: `${frontUrl}/#/success`,
+      cancel_url: `${frontUrl}/#/cancel`,
     });
 
     res.redirect(303, session.url);

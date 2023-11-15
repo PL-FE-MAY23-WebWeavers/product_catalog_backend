@@ -6,7 +6,7 @@ const stripeKey = process.env.STRIPE_TEST_KEY;
 const stripe = require('stripe')(stripeKey);
 
 const BASE_URL = process.env.STRIPE_URL;
-
+const frontUrl = process.env.CLIENT_URL;
 export const products = async () => {
   try {
     const all = await apiServices.getAll();
@@ -30,7 +30,7 @@ export const products = async () => {
             shippable: true,
             statement_descriptor: 'Nice Gadgets',
             tax_code: 'txcd_34021000',
-            url: `https://pl-fe-may23-webweavers.github.io/product_catalog/#/phones/:${product.phoneId}`,
+            url: `${frontUrl}#/phones/:${product.phoneId}`,
           })
       );
     }
