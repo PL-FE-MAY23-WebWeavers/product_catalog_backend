@@ -40,7 +40,7 @@ stripeApp.post(
     order_items.forEach((item: any[]) => {
       line_items.push({
         price_data: {
-          currency: 'usd',
+          currency: 'pln',
           product_data: {
             name: item[0],
           },
