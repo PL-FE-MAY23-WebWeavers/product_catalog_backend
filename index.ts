@@ -2,19 +2,15 @@ import express from 'express';
 import 'dotenv/config';
 import cors, { CorsOptions } from 'cors';
 import path from 'path';
-import { connect } from './src/utils/connectDB';
+// import { connect } from './src/utils/connectDB';
 import { apiRoutes } from './src/routes/api.routers';
-// import { authApp } from './src/auth/authApp';
-
-// authApp.listen(PORT, () => {
-//   console.log(`Listening on port ${PORT}`);
-// });
+import { stripeApp } from './src/utils/payment.server';
 
 const PORT = Number(process.env.PORT);
-// const CLIENT_URL = process.env.CLIENT_URL;
+
 const app = express();
 
-connect();
+// connect();
 
 // CORS configuration
 
@@ -52,3 +48,7 @@ app.use('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+stripeApp.listen(4242, () =>
+  console.log('Payment gateway running on port 4242')
+);

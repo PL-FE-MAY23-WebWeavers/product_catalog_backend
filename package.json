@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": "https://webweavers-app.onrender.com/:4242",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts, --ignore-path .gitignore",
@@ -58,6 +59,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.33.0",
     "sequelize-typescript": "^2.1.5",
+    "stripe": "^14.4.0",
     "ts-node": "^10.9.1"
   },
   "lint-staged": {

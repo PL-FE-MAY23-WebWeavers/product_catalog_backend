@@ -6,12 +6,6 @@ import {
 } from '../service/api.services';
 import { Request, Response } from 'express';
 
-// const getNum = async (req: Request, res: Response) => {
-//     const num = await apiServices.getNum();
-//     console.log('getNum');
-//     res.send(num.toString());
-// };
-
 const getAllPhones = async (req: Request, res: Response) => {
   const { page, perPage, orderBy, order, productType, searchText } = req.query;
 
