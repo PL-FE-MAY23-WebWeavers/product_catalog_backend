@@ -2,7 +2,7 @@ import express from 'express';
 import 'dotenv/config';
 import cors, { CorsOptions } from 'cors';
 import path from 'path';
-// import { connect } from './src/utils/connectDB';
+import { connect } from './src/utils/connectDB';
 import { apiRoutes } from './src/routes/api.routers';
 import { stripeApp } from './src/utils/payment.server';
 
@@ -10,7 +10,7 @@ const PORT = Number(process.env.PORT);
 
 const app = express();
 
-// connect();
+connect();
 
 // CORS configuration
 
