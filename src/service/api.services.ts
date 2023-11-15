@@ -16,10 +16,10 @@ export type OrderBy =
 export type SortOrder = 'ASC' | 'DESC';
 export type ProductType = 'phones';
 
-// const getNum = async () => {
-//     const num = await Phone.count();
-//     return num;
-// };
+const getAll = async () => {
+  const phones = await Phone.findAll();
+  return phones;
+};
 
 const getAllPhones = async (
   page: number,
@@ -155,6 +155,7 @@ const getDiscount = async () => {
 };
 
 export const apiServices = {
+  getAll,
   getAllPhones,
   getPhone,
   getPhonesRecommended,
