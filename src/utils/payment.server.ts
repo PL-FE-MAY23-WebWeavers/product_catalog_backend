@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
+import 'dotenv/config';
 
 import { Request, Response } from 'express';
 
-const stripe = require('stripe')(process.env.STRIPE_TEST_KEY);
+const testKey = process.env.STRIPE_TEST_KEY;
+const stripe = require('stripe')(testKey);
 
 const endpointSecret = process.env.ENDPOINT_SECRET;
 
@@ -50,6 +52,7 @@ stripeApp.post(
         quantity: item[1],
       });
     });
+
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
