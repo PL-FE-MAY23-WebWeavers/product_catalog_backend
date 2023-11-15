@@ -20,7 +20,7 @@ export const products = async () => {
             created: product.createdAt,
             default_price_data: {
               created: product.createdAt,
-              currency: 'usd',
+              currency: 'pln',
               metadata: {},
               tax_behavior: 'unspecified',
               unit_amount: product.price,
