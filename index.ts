@@ -3,8 +3,9 @@ import 'dotenv/config';
 import cors, { CorsOptions } from 'cors';
 import path from 'path';
 import { connect } from './src/utils/connectDB';
-import { apiRoutes } from './src/routes/api.routers';
-import { stripeApp } from './src/utils/payment.server';
+import { apiRoutes } from './src/routes/api.routes';
+import { stripeApp } from './src/controller/payment.controller';
+import { paymentRoutes } from './src/routes/payment.routes';
 
 const PORT = Number(process.env.PORT);
 
@@ -36,6 +37,8 @@ const corsOptions: CorsOptions = {
 
 app.use(cors(corsOptions));
 
+stripeApp.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
@@ -45,6 +48,7 @@ app.use('/', (req, res) => {
   res.send('WebWeavers - server działa!!!');
 });
 
+stripeApp.use('/payment', paymentRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
