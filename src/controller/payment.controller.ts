@@ -9,9 +9,6 @@ const stripe = require('stripe')(testKey);
 
 const endpointSecret = process.env.ENDPOINT_SECRET;
 
-const express = require('express');
-export const stripeApp = express();
-
 const frontUrl = process.env.CLIENT_URL;
 
 const fulfillOrder = (lineItems: any) => {
@@ -19,6 +16,7 @@ const fulfillOrder = (lineItems: any) => {
 };
 
 const createSession = async (req: Request, res: Response) => {
+  console.log(req.body);
   const order = req.body.cart.split('-');
   order.pop();
 
@@ -59,17 +57,7 @@ const createSession = async (req: Request, res: Response) => {
   res.redirect(303, session.url);
 };
 
-const createWebhook = async (
-  request: { body: any; headers: { [x: string]: any } },
-  response: {
-    status: (arg0: number) => {
-      (): any;
-      new (): any;
-      send: { (arg0: string): any; new (): any };
-      end: { (): void; new (): any };
-    };
-  }
-) => {
+const createWebhook = async (request: Request, response: Response) => {
   const payload = request.body;
   const sig = request.headers['stripe-signature'];
 

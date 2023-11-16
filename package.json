@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "proxy": "https://webweavers-app.onrender.com:4242",
   "engines": {
     "node": ">=18.18.0 <21.0.0"
   },
