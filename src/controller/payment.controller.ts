@@ -15,6 +15,9 @@ const fulfillOrder = (lineItems: any) => {
   console.log('Fulfilling order', lineItems);
 };
 
+// const createSession = (req: Request, res: Response) => {
+//   res.send('OK');
+// };
 const createSession = async (req: Request, res: Response) => {
   console.log(req.body);
   const order = req.body.cart.split('-');
