@@ -5,11 +5,11 @@ import path from 'path';
 import { connect } from './src/utils/connectDB';
 import { apiRoutes } from './src/routes/api.routes';
 import { paymentRoutes } from './src/routes/payment.routes';
-export const stripeApp = express();
+
 const PORT = Number(process.env.PORT);
 
 const app = express();
-
+const stripeApp = express();
 connect();
 
 // CORS configuration
@@ -37,10 +37,12 @@ const corsOptions: CorsOptions = {
 app.use(cors(corsOptions));
 
 stripeApp.use(cors(corsOptions));
+
 stripeApp.use('/payment', paymentRoutes);
-
 app.use(express.static(path.join(__dirname, 'public')));
-
+stripeApp.use('/', (req, res) => {
+  res.send('Payment - server działa!!!');
+});
 app.use(express.json());
 
 app.use('/api', apiRoutes);
